@@ -1,1 +1,1 @@
-linguist-language=react-native;
+*.* linguist-language=react-native;
