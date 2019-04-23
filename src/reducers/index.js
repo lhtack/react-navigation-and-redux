@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
-import { handleActions } from "redux-actions";
+import { combineActions, handleActions } from "redux-actions";
+import { increment, decrement } from "../actions";
 
 const coreData = handleActions(
   {
@@ -43,18 +44,26 @@ const common = handleActions(
         vcodeCountDown: payload
       };
     }, // 倒计时（这里是很巧妙的一个全局实现）
-    increment: (state, { payload: { amount = 1 } = { amount: 1 } }) => {
+    // 写法1
+    increment: (state, { payload: { amount } }) => {
       return {
         ...state,
         counter: state.counter + amount
       };
-    }, // 这里赋默认值 ES6的语法，如果payload为undefined,那么payload默认值为{ amount: 1 }。payload不为undefined，amount为undefined，那么amount默认值为1
-    decrement: (state, { payload: { amount = 1 } = { amount: 1 } }) => {
+    },
+    decrement: (state, { payload: { amount } }) => {
       return {
         ...state,
-        counter: state.counter - amount
+        counter: state.counter + amount
       };
     }
+    // // 写法2
+    // [combineActions(increment, decrement)]: (
+    //   state,
+    //   { payload: { amount } }
+    // ) => {
+    //   return { ...state, counter: state.counter + amount };
+    // }
   },
   {
     overlayContainer: {
@@ -71,7 +80,7 @@ const common = handleActions(
       active: false,
       remaining: 60
     },
-    counter: 0
+    counter: 10
   }
 );
 

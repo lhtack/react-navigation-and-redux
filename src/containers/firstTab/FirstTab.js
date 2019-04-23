@@ -57,14 +57,14 @@ class FirstTab extends Component<Props> {
               padding: 10,
               backgroundColor: "yellow"
             }}
-            onPress={() => this.props.increment({ amount: 1 })}
+            onPress={() => this.props.increment(1)}
           >
             <Text>+</Text>
           </TouchableOpacity>
           <Text>{counter}</Text>
           <TouchableOpacity
             style={{ padding: 10, backgroundColor: "yellow" }}
-            onPress={() => this.props.decrement({ amount: 1 })}
+            onPress={() => this.props.decrement(1)}
           >
             <Text>-</Text>
           </TouchableOpacity>
